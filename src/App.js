@@ -14,12 +14,13 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 
 function App() {
 
   const { state } = useContext(Store)
-  const { cart } = state
+  const { cart, userInfo } = state
 
   return (
 
@@ -37,6 +38,7 @@ function App() {
                     Carrinho
                     {cart.cartItems.length > 0 && (<Badge pill bg="danger">{cart.cartItems.reduce( (a, c) => a + c.quantity, 0)}</Badge>)}
                   </Link>
+                  {userInfo ? (<NavDropdown title={userInfo.name} id="basic-nav-dropdown"></NavDropdown>) : (<Link className="nav-link" to="/signin"> Login </Link>)}
               </Nav>
             </Container>
           </Navbar>
